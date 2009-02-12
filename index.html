@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script type="text/javascript" src="scripts/prototype.js" charset="utf-8"></script>
+	<script type="text/javascript" src="scripts/formtotal.js" charset="utf-8"></script>
+	<style type="text/css" media="screen">
+	 body {
+	   background-color: #ccc;
+	 }
+	 
+	 div#content {
+	   padding: 4em;
+	   display: block;
+	   margin-left: auto;
+	   margin-right: auto;
+	 }
+	 
+	 label {
+	   clear: both;
+	   margin-bottom: .5ex;
+	 }
+	 input {
+	   clear: both;
+	   margin-bottom: 1em;
+	 }
+	 
+	</style>
+
+	<title>A Form Test</title>
+</head>
+
+<body>
+  <div id='content'>
+  	<form action="nextform.html" method="get">  
+  	  <div>	  
+      	<label for="jos_fabrik_formdata3__invoice_amount_1">Item 1</label>
+      	<input type="text" id="jos_fabrik_formdata3__invoice_amount_1" class="addend"></input>
+      </div>
+  	  <div>	  
+      	<label for="jos_fabrik_formdata3__invoice_amount_2">Item 2</label>
+      	<input type="text" id="jos_fabrik_formdata3__invoice_amount_2" class="addend"></input>
+      </div>
+      <div>	  
+      	<label for="jos_fabrik_formdata3__invoice_amount_3">Item 3</label>
+      	<input type="text" id="jos_fabrik_formdata3__invoice_amount_3" class="addend"></input>
+      </div>
+  	  <div>	  
+      	<label for="jos_fabrik_formdata3__invoice_amount_4">Item 4</label>
+      	<input type="text" id="jos_fabrik_formdata3__invoice_amount_4" class="addend"></input>
+      </div>
+      <div>   
+        <label for="jos_fabrik_formdata3__invoice_amount_5">Item 5</label>
+        <input type="text" id="jos_fabrik_formdata3__invoice_amount_5" class="addend"></input>
+      </div>
+      <div>   
+        <label for="jos_fabrik_formdata__amount">Total</label>
+        <input type="text" id="subtotal"></input>
+      </div>
+      <div>   
+        <input type="submit"></input>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
