@@ -1,0 +1,23 @@
+body {
+  background-color: #eee;
+}
+
+div#content {
+  padding: 1em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+label {
+  clear: both;
+  display: block;
+  margin-bottom: 0ex;
+}
+
+input {
+  clear: both;
+  display: block;
+  margin-bottom: 1.25em;
+}
+

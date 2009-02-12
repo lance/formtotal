@@ -1,0 +1,23 @@
+h1. formtotal
+
+This is a simple javascript class that will add up input fields 
+with a class of @addend@ in a form and place the running total
+in an input field with an ID of @total@ and ensure that field is
+disabled.
+
+Each time the @total@ field is updated, a cookie is set in the
+browser to maintain the total value.  Any form field with the ID
+of @total@ will be prepopulated with the value of this cookie.
+
+h2. Usage
+
+Add the following lines to the @<head>@ element of your HTML document.
+  
+@<script type="text/javascript" src="scripts/prototype.js" charset="utf-8"></script>@
+
+@<script type="text/javascript" src="scripts/formtotal.js" charset="utf-8"></script>@
+
+Add the @addend@ class to all form elements to be included in the running total.
+Set the @id@ of the field containing the total amount to @total@.  Serve chilled.
+
+Author: "Lance Ball":lance@lanceball.com
