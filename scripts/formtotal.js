@@ -77,6 +77,13 @@ var Summarizer = Class.create({
 });
 
 function initialize() {
+	// var summary_fields = [];
+	// for(var i=1; i<6; i++) {
+	// 	elementID = "invoice_amount_" + i;
+	// 	if ($(elementID)) {
+	// 		summary_fields.push($(elementID));
+	// 	}
+	// }
 	summary_fields = document.getElementsByClassName(addendClassName);
 	var summarizer = new Summarizer(summary_fields, totalFieldID, cookieName);
 }

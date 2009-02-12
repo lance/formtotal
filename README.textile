@@ -20,4 +20,38 @@ Add the following lines to the @<head>@ element of your HTML document.
 Add the @addend@ class to all form elements to be included in the running total.
 Set the @id@ of the field containing the total amount to @total@.  Serve chilled.
 
-Author: "Lance Ball":lance@lanceball.com
+h2. Customization
+
+The Summarizer class just takes an array of DOM elements.  When the page loads, the initialize function is called.  It looks like this:
+
+<pre><code>
+function initialize() {
+  summary_fields = document.getElementsByClassName(addendClassName);
+  var summarizer = new Summarizer(summary_fields, totalFieldID, cookieName);
+}
+</code></pre>
+
+It's just getting the list of all DOM elements for a given class and passing those to the Summarizer constructor.  So, to customize the script to use IDs, you'd change it to look something like this (this works with the sample form):
+
+<pre><code>
+function initialize() {
+	var summary_fields = [];
+	for(var i=1; i<6; i++) {
+		elementID = "invoice_amount_" + i;  // Change this line to specify what the ID is for the elements you want 
+		if ($(elementID)) {
+			summary_fields.push($(elementID));
+		}
+	}
+	var summarizer = new Summarizer(summary_fields, totalFieldID, cookieName);
+}
+</code></pre>
+
+Or just manually create an array of elements you want to summarize, e.g.:
+
+<pre><code>
+function initialize() {
+	var summary_fields = [$('item1'), $('item2'), $('item3')];
+	var summarizer = new Summarizer(summary_fields, totalFieldID, cookieName);
+}
+</code></pre>
+
