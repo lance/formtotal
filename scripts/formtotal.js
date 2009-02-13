@@ -31,27 +31,29 @@ var Summarizer = Class.create({
 		for(i = 0; i < this.addends.length; i++) {
 			Event.observe(this.addends[i], 'change', this.summarize.bindAsEventListener(this));
 		}
-		this.prepopulate();
-		this.set_cookie(0);
+		if (this.read_cookie() >= 0) {
+			this.prepopulate();
+		}
+		this.summarize();
 	},
 	
 	set_cookie: function(total) {
 		document.cookie = cookieName+"="+total+"; path=/";
 	},
 	
-	read_cookie: function(cookieName) {
+	read_cookie: function() {
 		var theCookie = ""+document.cookie;
-		var ind = theCookie.indexOf(cookieName);
-		if (ind==-1 || cookieName=="") {return "";} 
+		var ind = theCookie.indexOf(this.cookieName);
+		if (ind==-1 || this.cookieName=="") {return "";} 
 		else {
 			var ind1=theCookie.indexOf(';',ind);
 			if (ind1==-1) ind1=theCookie.length; 
-			return unescape(theCookie.substring(ind+cookieName.length+1,ind1));	
+			return unescape(theCookie.substring(ind+this.cookieName.length+1,ind1));	
 		}
 	},
 
 	prepopulate: function() {
-		value = this.read_cookie(this.cookieName);
+		value = this.read_cookie();
 		if (value && $(this.total_field)) {
 			$(this.total_field).value = value;
 		}
@@ -59,20 +61,17 @@ var Summarizer = Class.create({
 	},	
 	
 	summarize: function() {
-		total = 0;
+		var total = 0;
 		for(i = 0; i < this.addends.length; i++) {
-			if (this.addends[i].value) {
-				var fieldvalue = this.addends[i].value;
-				value = parseFloat(fieldvalue);
-				if (value) {
-					total += value;
-				} else { 
-					alert(fieldvalue + " is not a number."); 
-				}
-			}
+			value = parseFloat(this.addends[i].value);
+			if (!isNaN(value)) {
+				total += value;
+			} 
 		}
-		$(this.total_field).value = total;
-		this.set_cookie(total);
+		if (this.addends.length > 0 && !isNaN(total)) {
+			$(this.total_field).value = total;
+			this.set_cookie(total);
+		}
 	}
 	
 });
