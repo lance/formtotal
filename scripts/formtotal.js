@@ -62,11 +62,12 @@ var Summarizer = Class.create({
 		total = 0;
 		for(i = 0; i < this.addends.length; i++) {
 			if (this.addends[i].value) {
-				value = parseInt(this.addends[i].value);
+				var fieldvalue = this.addends[i].value;
+				value = parseFloat(fieldvalue);
 				if (value) {
 					total += value;
 				} else { 
-					alert(this.addends[i].value + " is not a number."); 
+					alert(fieldvalue + " is not a number."); 
 				}
 			}
 		}
