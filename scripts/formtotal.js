@@ -16,9 +16,12 @@ var addendClassName = 'addend';
 var totalFieldID    = 'total';
 var cookieName      = 'total';
 
-Event.observe(window, 'load', initialize);
+window.addEvent('domready', function initialize() {
+	summary_fields = document.getElementsByClassName(addendClassName);
+	new Summarizer(summary_fields, totalFieldID, cookieName);
+});
 
-var Summarizer = Class.create({
+var Summarizer = new Class({
 	addends : 0,
 	total_field : 0,
 	cookieName : 0,
@@ -29,7 +32,7 @@ var Summarizer = Class.create({
 		this.cookieName = cookieName;
 		
 		for(i = 0; i < this.addends.length; i++) {
-			Event.observe(this.addends[i], 'change', this.summarize.bindAsEventListener(this));
+			this.addends[i].addEvent('blur', this.summarize.bindWithEvent(this));
 		}
 		if (this.read_cookie() >= 0) {
 			this.prepopulate();
@@ -76,16 +79,5 @@ var Summarizer = Class.create({
 	
 });
 
-function initialize() {
-	// var summary_fields = [];
-	// for(var i=1; i<6; i++) {
-	// 	elementID = "invoice_amount_" + i;
-	// 	if ($(elementID)) {
-	// 		summary_fields.push($(elementID));
-	// 	}
-	// }
-	summary_fields = document.getElementsByClassName(addendClassName);
-	var summarizer = new Summarizer(summary_fields, totalFieldID, cookieName);
-}
 
 

@@ -11,9 +11,9 @@ of @total@ will be prepopulated with the value of this cookie.
 
 h2. Usage
 
-Add the following lines to the @<head>@ element of your HTML document.
+This code relies on Mootools.  It has been tested and ships with version 1.2.1.  Add the following lines to the @<head>@ element of your HTML document.
   
-@<script type="text/javascript" src="scripts/prototype.js" charset="utf-8"></script>@
+@<script type="text/javascript" src="scripts/mootools.js" charset="utf-8"></script>@
 
 @<script type="text/javascript" src="scripts/formtotal.js" charset="utf-8"></script>@
 
@@ -22,36 +22,36 @@ Set the @id@ of the field containing the total amount to @total@.  Serve chilled
 
 h2. Customization
 
-The Summarizer class just takes an array of DOM elements.  When the page loads, the initialize function is called.  It looks like this:
+The Summarizer class just takes an array of DOM elements.  When the page loads, the code waits for the DOM to be ready, gets all of the elements to be summarized, and passes those into the Summarizer constructor.  It looks like this:
 
 <pre><code>
-function initialize() {
-  summary_fields = document.getElementsByClassName(addendClassName);
-  var summarizer = new Summarizer(summary_fields, totalFieldID, cookieName);
-}
+  window.addEvent('domready', function initialize() {
+  	summary_fields = document.getElementsByClassName(addendClassName);
+  	new Summarizer(summary_fields, totalFieldID, cookieName);
+  });
 </code></pre>
 
 It's just getting the list of all DOM elements for a given class and passing those to the Summarizer constructor.  So, to customize the script to use IDs, you'd change it to look something like this (this works with the sample form):
 
 <pre><code>
-function initialize() {
-	var summary_fields = [];
-	for(var i=1; i<6; i++) {
-		elementID = "invoice_amount_" + i;  // Change this line to specify what the ID is for the elements you want 
-		if ($(elementID)) {
-			summary_fields.push($(elementID));
-		}
-	}
-	var summarizer = new Summarizer(summary_fields, totalFieldID, cookieName);
-}
+  window.addEvent('domready', function initialize() {
+  	var summary_fields = [];
+  	for(var i=1; i<6; i++) {
+  		elementID = "invoice_amount_" + i;  // Change this line to specify what the ID is for the elements you want 
+  		if ($(elementID)) {
+  			summary_fields.push($(elementID));
+  		}
+  	}
+  	new Summarizer(summary_fields, totalFieldID, cookieName);
+  });
 </code></pre>
 
 Or just manually create an array of elements you want to summarize, e.g.:
 
 <pre><code>
-function initialize() {
-	var summary_fields = [$('item1'), $('item2'), $('item3')];
-	var summarizer = new Summarizer(summary_fields, totalFieldID, cookieName);
-}
+  window.addEvent('domready', function initialize() {
+  	var summary_fields = [$('item1'), $('item2'), $('item3')];
+  	new Summarizer(summary_fields, totalFieldID, cookieName);
+  });
 </code></pre>
 
